@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 	$harga_diskon  = mysqli_real_escape_string($link, $_POST['harga_diskon']);
 	$jumlah        = mysqli_real_escape_string($link, $_POST['jumlah']);
 
-	$sql = "INSERT INTO keranjang (id_produk, id_user, `harga-normal`, `harga-diskon`, jumlah)
+	$sql = "INSERT INTO keranjang (id_produk, id_user, `harga_normal`, `harga_diskon`, jumlah)
 			VALUES ('$id_produk', '$id_user', '$harga_normal', '$harga_diskon', '$jumlah')";
 
 	mysqli_query($link, $sql);
@@ -395,9 +395,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 
 								<!-- price -->
 								<div class="shop-item-price">
-									<span class="line-through"><?= $row['harga-normal']; ?></span>
+									<span class="line-through"><?= $row['harga_normal']; ?></span>
 									<?php
-										echo htmlspecialchars($row['harga-diskon']);
+										echo htmlspecialchars($row['harga_diskon']);
 									?>
 								</div>
 								<!-- /price -->
@@ -407,8 +407,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 								<div class="shop-item-buttons text-center">
 									<form method="post" style="display: inline;">
 										<input type="hidden" name="id_produk" value="<?php echo $row['id']; ?>">
-										<input type="hidden" name="harga_normal" value="<?php echo $row['harga-normal']; ?>">
-										<input type="hidden" name="harga_diskon" value="<?php echo $row['harga-diskon']; ?>">
+										<input type="hidden" name="harga_normal" value="<?php echo $row['harga_normal']; ?>">
+										<input type="hidden" name="harga_diskon" value="<?php echo $row['harga_diskon']; ?>">
 										<input type="hidden" name="jumlah" value="1">
 										<button type="submit" name="add_to_cart">Tambahkan ke Keranjang</button>
 									</form>
@@ -448,15 +448,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 						<?php
 							include 'lat_conn.php';
 
-							$query = "SELECT id, nama, foto, `harga-normal`, `harga-diskon` FROM produk";
+							$query = "SELECT id, nama, foto, `harga_normal`, `harga_diskon` FROM produk";
 							$result = mysqli_query($link, $query);
 
 							while ($row = mysqli_fetch_assoc($result)):
 								$id = htmlspecialchars($row['id']);
 								$nama = htmlspecialchars($row['nama']);
 								$foto = htmlspecialchars($row['foto']);
-								$hargaNormal = htmlspecialchars($row['harga-normal']);
-								$hargaDiskon = htmlspecialchars($row['harga-diskon']);
+								$hargaNormal = htmlspecialchars($row['harga_normal']);
+								$hargaDiskon = htmlspecialchars($row['harga_diskon']);
 							?>
 							<li class="col-lg-2 col-sm-4">
 								<div class="shop-item">
@@ -475,8 +475,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 										<div class="shop-option-over">
 											<form method="post" style="display: inline;">
 										<input type="hidden" name="id_produk" value="<?php echo $row['id']; ?>">
-										<input type="hidden" name="harga_normal" value="<?php echo $row['harga-normal']; ?>">
-										<input type="hidden" name="harga_diskon" value="<?php echo $row['harga-diskon']; ?>">
+										<input type="hidden" name="harga_normal" value="<?php echo $row['harga_normal']; ?>">
+										<input type="hidden" name="harga_diskon" value="<?php echo $row['harga_diskon']; ?>">
 										<input type="hidden" name="jumlah" value="1">
 										<button type="submit" name="add_to_cart" class="btn btn-default"><i class="fa fa-cart-plus size-18"></i></button>
 									</form>

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 	$harga_diskon  = mysqli_real_escape_string($link, $_POST['harga_diskon']);
 	$jumlah        = mysqli_real_escape_string($link, $_POST['jumlah']);
 
-	$sql = "INSERT INTO keranjang (id_produk, id_user, `harga-normal`, `harga-diskon`, jumlah)
+	$sql = "INSERT INTO keranjang (id_produk, id_user, `harga_normal`, `harga_diskon`, jumlah)
 			VALUES ('$id_produk', '$id_user', '$harga_normal', '$harga_diskon', '$jumlah')";
 
 	mysqli_query($link, $sql);
@@ -342,8 +342,8 @@ $query = "
         keranjang.id AS id_keranjang,
         produk.nama,
         produk.foto,
-        produk.`harga-normal`,
-        produk.`harga-diskon`,
+        produk.`harga_normal`,
+        produk.`harga_diskon`,
         keranjang.jumlah
     FROM keranjang
     JOIN produk ON keranjang.id_produk = produk.id
@@ -371,8 +371,8 @@ $total_semua = 0;
                 </thead>
                 <tbody>
                     <?php while ($row = mysqli_fetch_assoc($result)):
-                        $harga_diskon = (int)preg_replace('/[^\d]/', '', $row['harga-diskon']);
-                        $harga_normal = (int)preg_replace('/[^\d]/', '', $row['harga-normal']);
+                        $harga_diskon = (int)preg_replace('/[^\d]/', '', $row['harga_diskon']);
+                        $harga_normal = (int)preg_replace('/[^\d]/', '', $row['harga_normal']);
                         $harga = $harga_diskon > 0 ? $harga_diskon : $harga_normal;
                         $jumlah = (int)$row['jumlah'];
                         $total = $harga * $jumlah;
@@ -438,15 +438,15 @@ $total_semua = 0;
 						<?php
 							include 'lat_conn.php';
 
-							$query = "SELECT id, nama, foto, `harga-normal`, `harga-diskon` FROM produk";
+							$query = "SELECT id, nama, foto, `harga_normal`, `harga_diskon` FROM produk";
 							$result = mysqli_query($link, $query);
 
 							while ($row = mysqli_fetch_assoc($result)):
 								$id = htmlspecialchars($row['id']);
 								$nama = htmlspecialchars($row['nama']);
 								$foto = htmlspecialchars($row['foto']);
-								$hargaNormal = htmlspecialchars($row['harga-normal']);
-								$hargaDiskon = htmlspecialchars($row['harga-diskon']);
+								$hargaNormal = htmlspecialchars($row['harga_normal']);
+								$hargaDiskon = htmlspecialchars($row['harga_diskon']);
 							?>
 							<li class="col-lg-2 col-sm-4">
 								<div class="shop-item">
@@ -465,8 +465,8 @@ $total_semua = 0;
 										<div class="shop-option-over">
 											<form method="post" style="display: inline;">
 										<input type="hidden" name="id_produk" value="<?php echo $row['id']; ?>">
-										<input type="hidden" name="harga_normal" value="<?php echo $row['harga-normal']; ?>">
-										<input type="hidden" name="harga_diskon" value="<?php echo $row['harga-diskon']; ?>">
+										<input type="hidden" name="harga_normal" value="<?php echo $row['harga_normal']; ?>">
+										<input type="hidden" name="harga_diskon" value="<?php echo $row['harga_diskon']; ?>">
 										<input type="hidden" name="jumlah" value="1">
 										<button type="submit" name="add_to_cart" class="btn btn-default"><i class="fa fa-cart-plus size-18"></i></button>
 									</form>

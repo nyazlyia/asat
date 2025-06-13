@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Simpan ke database
-    $query = "INSERT INTO produk (nama, foto, `harga-normal`, `harga-diskon`) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO produk (nama, foto, `harga_normal`, `harga_diskon`) VALUES (?, ?, ?, ?)";
     $stmt = $link->prepare($query);
     $stmt->bind_param("ssii", $nama, $foto, $harga_normal, $harga_diskon);
 

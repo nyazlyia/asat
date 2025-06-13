@@ -72,8 +72,8 @@ $result = mysqli_query($link, $query);
 if ($row = mysqli_fetch_assoc($result)) {
     $image = htmlspecialchars($row['foto']);
     $nama = htmlspecialchars($row['nama']);
-    $harga_normal = htmlspecialchars($row['harga-normal']);
-    $harga_diskon = htmlspecialchars($row['harga-diskon']);
+    $harga_normal = htmlspecialchars($row['harga_normal']);
+    $harga_diskon = htmlspecialchars($row['harga_diskon']);
 } else {
     $image = 'noimg.jpg';
     $nama = 'Produk tidak ditemukan';
